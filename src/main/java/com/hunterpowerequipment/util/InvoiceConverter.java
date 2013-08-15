@@ -15,7 +15,7 @@ public class InvoiceConverter
 {
 	private static final Logger logger = Logger.getLogger(InvoiceConverter.class);
 
-	public static void main( final String[] args )
+	public static void main( final String[] args ) throws Exception
     {
     	if( args.length != 1 )
     	{
@@ -94,7 +94,7 @@ public class InvoiceConverter
         }
         
         while( true )
-        	;
+          Thread.sleep(50);
         
     }
 }
