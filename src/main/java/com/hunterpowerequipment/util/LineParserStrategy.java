@@ -8,15 +8,15 @@ public class LineParserStrategy implements AggregationStrategy {
 	
 	Logger logger = Logger.getLogger(LineParserStrategy.class);
 	
-	private static String LPT1_HEADER = "C LPT1                                         S" ;
-	private static String LPT1_FOOTER = "C LPT1                                         E" ;
+	private static String LPT1_HEADER = "LPT1                                         S" ;
+	private static String LPT1_FOOTER = "LPT1                                         E" ;
 	
 	public static String SPLIT_TOKEN = "<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>" ;
 	
 	public String handleLine( String line )
 	{
-		if( line.length() > 6 )
-			line = line.substring(6) ;
+		if( line.length() > 8 )
+			line = line.substring(8) ;
 		
 		return line ;
 	}
@@ -40,7 +40,7 @@ public class LineParserStrategy implements AggregationStrategy {
         	return newExchange ;
         }
         
-        if( newLine.contains( LPT1_FOOTER ))
+        if( newLine.contains( LPT1_FOOTER ) )
         {
         	// this is the last line in the job, and we don't want it.
         	return oldExchange ;
