@@ -17,7 +17,7 @@ public class InvoiceConverter
 
 	public static void main( final String[] args ) throws Exception
     {
-    	if( args.length != 1 )
+    	if( args.length < 1 || args.length > 2 )
     	{
     		System.out.println( "Add an input directory." ) ;
     		return ;
@@ -34,11 +34,13 @@ public class InvoiceConverter
                     
                     String in = "file:" + args[0] ;
                     String out = in + "//output" ;
+		    if( args.length > 1 )
+			out = "file:" + args[1] ;
                     System.out.println( "In file is: " + in ) ;
                     System.out.println( "Out file is: " + out ) ;
 
                     // check the directory 'in' for new files
-                    from(in)
+                    from(in + "?fileName=DAVE____.SPL&readLock=changed")
                     
                     	.to("log:com.hunterpowerequipment?level=DEBUG")
 
@@ -76,7 +78,7 @@ public class InvoiceConverter
                         			logger.debug( "Outputting file: " + exchange.getIn().getHeader("CamelFileName"));
                         		}
                         	})
-                    
+
                         	// output as a file
                         	.to( out )                  
                     
